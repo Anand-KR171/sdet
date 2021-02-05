@@ -17,52 +17,48 @@ public class Steps {
 		driver = new ChromeDriver();
 		driver.get("https://opensource-demo.orangehrmlive.com/");
 	}
-	
-	@When("Enter the valid name")
-	public void enter_the_valid_name() {
-		driver.findElement(By.id("txtUsername")).sendKeys("admin");
+		
+	@When("Enter the valid name {string}")
+	public void enter_the_valid_name(String string) {
+		driver.findElement(By.id("txtUsername")).sendKeys(string);
 	}
-	@When("Enter the valid password and Click on the login button")
-	public void enter_the_valid_password() {
-		driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+	@When("Enter the valid password {string}")
+	public void enter_the_valid_password(String string) {
+		driver.findElement(By.id("txtPassword")).sendKeys(string);
+	}
+	@When("Click on the Validbutton")
+	public void click_on_the_validbutton() {
 		driver.findElement(By.id("btnLogin")).click();
 	}
-	/*@When("Click on the login button")
-	public void click_on_the_login_button() {
-		
-	}*/
 	@SuppressWarnings("deprecation")
-	@Then("Login should be successfully")
-	public void login_should_be_successfully() throws InterruptedException {
-		String Ename=driver.findElement(By.id("welcome")).getText();
+	@Then("I see the name as {string}")
+	public void i_see_the_name_as(String string) throws InterruptedException {
+//		String Ename=driver.findElement(By.id("welcome")).getText();
 		String Aname="Welcome Paul";
-		Assert.assertEquals(Ename, Aname);
+		Assert.assertEquals(string, Aname);
 		driver.findElement(By.id("welcome")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[@id='welcome-menu']/ul/li[2]/a")).click();
 		driver.close();
-
 	}
-	
-	@When("Enter the invalid name")
-	public void enter_the_invalid_name() {
-		driver.findElement(By.id("txtUsername")).sendKeys("anand");
+	@When("Enter the invalid name {string}")
+	public void enter_the_invalid_name(String string) {
+		driver.findElement(By.id("txtUsername")).sendKeys(string);
 	}
-	@When("Enter the invalid password and Click on the login button")
-	public void enter_the_invalid_password() {
-		driver.findElement(By.id("txtPassword")).sendKeys("anand");
+	@When("Enter the invalid password {string}")
+	public void enter_the_invalid_password(String string) {
+			driver.findElement(By.id("txtPassword")).sendKeys(string);
+	}
+	@When("Click on the Invlaidbutton")
+	public void click_on_the_invlaidbutton() {
 		driver.findElement(By.id("btnLogin")).click();
 	}
-	/*@When("Click on the login button")
-	public void click_on_the_login_button1() {
-		
-	}*/
 	@SuppressWarnings("deprecation")
-	@Then("Login should be unsuccessful")
-	public void login_should_be_unsuccessful() {
-		String EErron=driver.findElement(By.id("spanMessage")).getText();
+	@Then("i want to see the invalid as {string}")
+	public void i_want_to_see_the_invalid_as(String string) {
+//		String EErron=driver.findElement(By.id("spanMessage")).getText();
 		String AError="Invalid credentials";
-		Assert.assertEquals(EErron, AError);
+		Assert.assertEquals(string, AError);
 		driver.close();
 	}
 }
